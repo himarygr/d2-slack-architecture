@@ -1,0 +1,28 @@
+name: Generate Architecture Diagram
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-diagram:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install D2
+        run: |
+          curl -fsSL https://d2lang.com/install.sh | sh -s --
+          sudo mv d2 /usr/local/bin/
+
+      - name: Generate Diagram
+        run: |
+          mkdir -p artifacts
+          d2 --theme 200 architecture.d2 artifacts/architecture.svg
+
+      - name: Upload Diagram Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: architecture-diagram
+          path: artifacts/architecture.svg
+
