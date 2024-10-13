@@ -1,0 +1,67 @@
+ClientWeb {
+  label: "Web Client"
+}
+ClientDesktop {
+  label: "Desktop Client"
+}
+ClientMobile {
+  label: "Mobile Client"
+}
+
+APIGateway {
+  label: "API Gateway"
+}
+
+AuthService {
+  label: "Authentication Service"
+}
+MessagingService {
+  label: "Messaging Service"
+}
+NotificationService {
+  label: "Notification Service"
+}
+FileStorageService {
+  label: "File Storage Service"
+}
+SearchService {
+  label: "Search Service"
+}
+
+UserDB {
+  label: "User Database"
+}
+MessageDB {
+  label: "Message Database"
+}
+FileStorage {
+  label: "File Storage"
+}
+SearchIndex {
+  label: "Search Index"
+}
+
+WebSocketServer {
+  label: "WebSocket Server"
+}
+
+ClientWeb -> APIGateway
+ClientDesktop -> APIGateway
+ClientMobile -> APIGateway
+
+APIGateway -> AuthService
+APIGateway -> MessagingService
+APIGateway -> NotificationService
+APIGateway -> FileStorageService
+APIGateway -> SearchService
+
+AuthService -> UserDB
+MessagingService -> MessageDB
+MessagingService -> WebSocketServer
+NotificationService -> WebSocketServer
+FileStorageService -> FileStorage
+SearchService -> SearchIndex
+
+WebSocketServer -> ClientWeb
+WebSocketServer -> ClientDesktop
+WebSocketServer -> ClientMobile
